@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:json_annotation_model/model/json_data.dart';
+import 'package:json_annotation_model/service/app_networking_config.dart';
 
 import 'app_http.dart';
 
@@ -28,7 +29,6 @@ class AppNetworking {
     )
         .then((dynamic data) {
       var recommendMovie = JsonData.formJson(data);
-      print(recommendMovie.title);
       completer.complete(recommendMovie);
     }, onError: (error) {
       completer.completeError(error);
@@ -36,8 +36,4 @@ class AppNetworking {
 
     return completer.future;
   }
-}
-
-class AppNetWorkingConfig {
-  static String recommendMoviePath = '/json/test';
 }

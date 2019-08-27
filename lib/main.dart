@@ -36,7 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      AppNetworking.instance.getRecommendMovie();
+      AppNetworking.instance.getRecommendMovie().then((val){
+        print(val.title);
+      });
       _counter++;
     });
   }

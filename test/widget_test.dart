@@ -1,30 +1,18 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:json_annotation_model/main.dart';
+import 'package:json_annotation_model/model/json_data.dart';
+import 'package:json_annotation_model/util/app_networking.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  group('jsonparse test', () {
+    test('mockdata test', () {
+//      JsonData data1 = JsonData.formJson(json.decode(JsonString.mockdata));
+      JsonData jsonData = JsonData();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      AppNetworking.instance.getRecommendMovie().then((val) {
+        jsonData = val;
+        expect(jsonData.title, ' My YC app: Dropbox - Throw away your USB drive');
+      });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    });
   });
 }
