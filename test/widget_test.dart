@@ -5,14 +5,12 @@ import 'package:json_annotation_model/util/app_networking.dart';
 void main() {
   group('jsonparse test', () {
     test('mockdata test', () {
-//      JsonData data1 = JsonData.formJson(json.decode(JsonString.mockdata));
       JsonData jsonData = JsonData();
-
       AppNetworking.instance.getRecommendMovie().then((val) {
         jsonData = val;
-        expect(jsonData.title, ' My YC app: Dropbox - Throw away your USB drive');
+        expect(
+            jsonData.title, ' My YC app: Dropbox - Throw away your USB drive');
       });
-
     });
   });
 }
